@@ -1,0 +1,36 @@
+/*possible color pallet
+/* CSS HEX 
+--red-pigment: #ed1c24ff;
+--honey-yellow: #fdb833ff;
+--dodger-blue: #1789fcff;
+--baby-powder: #fbfefbff;
+--charcoal: #364156ff; */
+
+body {
+    background-color: #1789fc;
+    color: #191716;
+
+}
+h1 {
+    font-family: 'Bungee Shade', cursive;
+    color: black;
+    font-size: 50px;
+    text-align: center;
+}
+h3 {
+    color: #ed1c24;
+    font-family: 'Bungee Shade', cursive;
+    text-align: center;
+}
+.col-6 {
+    border: black 2px solid;
+    border-radius: 25px;
+    background-color: #fbfefb;
+    font-family: 'Bungee Hairline', cursive;
+}
+.col-4 {
+    border: black 2px solid;
+    border-radius: 25px;
+    font-family: 'Bungee Hairline', cursive;
+    background-color: #fbfefb;
+}
