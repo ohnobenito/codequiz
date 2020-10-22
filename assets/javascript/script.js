@@ -1,16 +1,84 @@
+
+//Questions to push into empty div
+let testQuestions = [
+    {
+        question: "Here's a question, Buddy",
+        answers: {
+            a: "this answer",
+            b: "this one",
+            c: "this one tho",
+            d: "alrighty"
+        }, correctAnswer: 'a'
+    },
+    {
+        question: "Here's a question, Buddy",
+        answers: {
+            a: "this answer",
+            b: "this one",
+            c: "this one tho",
+            d: "alrighty"
+        }, correctAnswer: 'c'
+    },
+    {
+        question: "Here's a question, Buddy",
+        answers: {
+            a: "this answer",
+            b: "this one",
+            c: "this one tho",
+            d: "alrighty"
+        }, correctAnswer: 'b'
+    },   
+]
+
+
+testQuestionsIndex = 0;
+timerEl = document.getElementById("time");
+time = testQuestions.length * 15;
+let timerId;
+
 // WHEN START BUTTON IS CLICKED
 
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', startQuiz); 
 
-// 1.) TIMER STARTS COUNTING DOWN
-    //FUCNTION STARTCLOCK
-    function startTimer();
+// 1.)  WHEN START BUTTON IS CLICKED:
+    function startQuiz() {
+           //HIDE START SCREEN
+       let quizEl = document.getElementById("quizstart");
+       quizEl.setAttribute("class", "hide");
+        
+           //REPLACE WITH EMPTY DIV TO PLACE QUESTIONS:
+       let questEl = document.getElementById("questions");
+       questEl.removeAttribute("id");
 
-// 2.) QUESTIONS START BEING PRESENTED
-    // FUNCTION START QUIZ
-    function startQuiz();
+        // TIMER STARTS
+       timerId = setInterval(clockTick, 1000);
 
+       timerEl.textContent = time;
+
+        // LOAD QUESTIONS TO DIV
+         loadQuestions();
+    };
+   
+    // LOAD QUESTIONS TO EMPTY DIV, WITH MULTIPLE CHOICE ANSWERS
+    function loadQuestions() {
+        let titleCard = document.getElementById("question-title");
+        titleCard.innerHTML = "What even is an array, buddy?"
+
+        let choicesEL = document.getElementById("answers");
+       
+        choicesEL.textContent = "could be a thingy!";
+    }
+
+    function clockTick() {
+        time--;
+        timerEl.textContent = time;
+
+        if (time < 1) {
+            clearInterval(timerId);
+        }
+
+    }
 
 // WHEN A QUESTION IS ANSWERED A NEW QUESTION POPS UP
 
@@ -19,41 +87,6 @@ startButton.addEventListener('click', startQuiz);
 //  GAME ENDS WHEN TIMER HITS 0 OR ALL QUESTIONS ARE ANSWERED
 
 //  WHEN THE GAME ENDS, PLAYER CAN ENTER INITIALS AND SCORE GETS SAVED
-
-
-// LIST OF (test) QUESTIONS
-let questions = [
-    {
-        title: "What was the title of Taylor Swift's first EXCLUSIVELY pop album?",
-        choices: ["reputation", "RED", "1989", "Lover"],
-        answer: "1989"
-    },
-    {
-        title: "During the 2020 pandemic, Taylor released a surprise album. What was it called?",
-        choices: ["woodsong", "folklore", "urban legends", "chromatica"],
-        answer: "folklore"
-    },
-    {
-        title: "When was Taylor Swift born?",
-        choices: ["December 13th, 1989", "February 13th, 1988", "July 13th, 1987", "December 13th, 1988"],
-        answer: "December 13th, 1989"
-    },
-    {
-        title: "Here is another question about",
-        choices: ["this answer", "nah", "okay", "this is the correct choice"],
-        answer: "this is the correct choice"
-    },
-    {
-        title: "sample question",
-        choices: ["answer 1", "answer 2", "answer 3", "answer 4"],
-        answer: "answer 3"
-    },
-    {
-        title: "Another Question",
-        choices: ["this is the answer", "nope", "nada", "hmmmm"],
-        answer: "this is the answer"
-    },
-]
 
 
 
