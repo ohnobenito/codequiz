@@ -28,7 +28,7 @@
                 <div class="col-6 text-center" id="quizstart"> 
                     <h3> THE QUIZ </h3> <hr>
                     <p> Hello & Welcome to Bratty B's Coding Q's!<br>
-                        Player (you!) earns points based on time lapsed. But be careful, wrong answers will make you lose points! Click the start button to begin!</p>
+                        Race the clock to finish the quiz! Earn a few seconds for every correct answer, but CAUTION: wrong answers will make you lose points!</p>
                         
                     <button id="start"> S T A R T </button>
                     <br>
@@ -36,18 +36,20 @@
                 </div>
                 <div class="col-6 text-center" id="questions">
                     <h2 id="question-title"></h2>
-                    <div id="choices" class="choices"></div>
+                    <div id="choices" class="choices"> <br><br></div>
                 </div>
                 <div class="col-6 text-center" id="endgame">
                     <h2>Congrats! You did it!</h2>
-                    <p>Your final score is <span id="final-score"></span>.</p>
+                    <p>You scored <span id="final-score"></span>, buddy!</p>
                     <p>
-                      Enter initials: <input type="text" id="initials" max="3" />
+                      Enter initials: <input type="text" name="initials" id="initials" max="3"/> <br><br>
                       <button id="submit">Submit</button>
                     </p>
                   </div>
                 <div class="col-4 offset-2 mx-auto"> 
                     <h3> The High Scores </h3> <hr>
+                    <ol id="score"></ol>
+                    </div>
                 </div>
             </div>
        </div>
