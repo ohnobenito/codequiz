@@ -1,6 +1,8 @@
 
+// FOR QUESTION ARRAY
 
 let currentQuestionIndex = 0;
+
 //TIMER INFO
 let timerEl = document.getElementById("time");
 time = questions.length * 20;
@@ -9,18 +11,24 @@ let timerId;
 //VARIABLES TO REF HTML
 let choicesEl = document.getElementById("choices");
 let questEl = document.getElementById("questions");
-let startButton = document.getElementById('start');
+let startButton = document.getElementById("start");
 let quizEl = document.getElementById("quizstart");
 let titleEl = document.getElementById("question-title");
 let endGame = document.getElementById("endgame");
+let finalS = document.getElementById("final-score");
+let submitHS = document.getElementById("submit");
+let initialsInput = document.querySelector("#initials");
+let initialsEl = document.getElementById("user-initials");
+let scoreEl = document.getElementById("score")
 
 //EVENT LISTENERS
 startButton.addEventListener('click', startQuiz); 
+submitHS.addEventListener('click', highScore);
 
 //WHEN START BUTTON IS CLICKED START QUIZ FUNCTION STARTS:
 
     function startQuiz() {
-           //HIDE THE START SCREEN BY SETTING THE 
+           //HIDE THE START SCREEN BY SETTING THE DIV TO HIDE
        quizEl.setAttribute("class", "hide");
         
            //REPLACE WITH EMPTY DIV TO PLACE QUESTIONS BY REMOVING "ID" ATTRIBUTE:
@@ -28,19 +36,21 @@ startButton.addEventListener('click', startQuiz);
 
         // TIMER GONNA START NOW
        timerId = setInterval(clockTick, 1000);
-        //DISPLAYS TIME
+
+        //DISPLAYS TIME IN TIMER SPOT
        timerEl.textContent = time;
 
         // LOAD QUESTIONS TO DIV
          quizQuestions();
     };
-        // HERE'S THE FUNCTION TO GRAB THE QUESTIONS FROM OUR OTHER JAVA SHEET
+        
+    // HERE'S THE FUNCTION TO GRAB THE QUESTIONS FROM OUR OTHER JAVA SHEET
 
     function quizQuestions() {
-        // GRABS FIRST (NEXT) QUESTION
+        // GRABS FIRST QUESTION
         let currentQuestion = questions[currentQuestionIndex];
 
-        //UPDATE QUESTION TITLE 
+        //UPDATE QUESTION TITLE IN HTML
         titleEl.textContent = currentQuestion.title;
        
         // THIS WILL CLEAR OUT ANY OLD ANSWERS
@@ -48,6 +58,7 @@ startButton.addEventListener('click', startQuiz);
 
         // GRABS THE CHOICES
         currentQuestion.choices.forEach(function(choice, i) {
+
             // ADDS CHOICE BUTTONS FOR ANSWERS
             let choiceNode = document.createElement("button");
             choiceNode.setAttribute("class", "choice");
@@ -74,15 +85,15 @@ startButton.addEventListener('click', startQuiz);
           // UPDATES TIMER
           timerEl.textContent = time;
         } else {
-            //ADDS 10 SECONDS TO CLOCK IF CORRECT
-            time += 10;
+            //ADDS 5 SECONDS TO CLOCK IF CORRECT
+            time += 5;
             // UPDATES TIMER TO REFLECT
             timerEl.textContent = time;
         }
         // WHEN A QUESTION IS ANSWERED A NEW QUESTION POPS UP
         currentQuestionIndex++;
       
-        // IF OUT OF QUESTIONS RUN ENDQUIZ FUNCTION
+        // IF OUT OF QUESTIONS RUN QUIZEND FUNCTION
         if (currentQuestionIndex === questions.length) {
           quizEnd();
         }  // IF QUESTIONS AREN'T DONE QUESTIONS CONTINUE
@@ -98,6 +109,8 @@ startButton.addEventListener('click', startQuiz);
         endGame.removeAttribute("id");
         // STOP THE TIMER
         clearInterval(timerId);
+        //FINAL SCORE IS EQUAL TO TIME ON CLOCK
+        finalS.textContent = time;
     };
 
     // RUNS CLOCK TIMER
@@ -105,9 +118,23 @@ startButton.addEventListener('click', startQuiz);
         time--;
         timerEl.textContent = time;
 
-        if (time < 1) {
+        //IF CLOCK HITS 0 AUTOMATICALLY END GAME
+        if (time === 0) {
             clearInterval(timerId);
+            quizEnd()
         }
+    };
 
+    // USE LOCAL STORAGE TO STORE HIGH SCORE 
+    //REF ACTIVITY ON LOCAL STORAGE FOR REFRESHER
+    function highScore() {
+      let user = initialsInput.value.trim();
+      let input = user + " " + time;
+      console.log(input);
+     
+      localStorage.setItem("input", JSON.stringify(input));
+
+      let lastPlayer = JSON.parse(localStorage.getItem("input"));
+      scoreEl.textContent = lastPlayer;
     }
-
+    
