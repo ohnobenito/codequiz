@@ -19,6 +19,10 @@ body {
 .choices button {
     display: block;
     text-align: center;
+    font-weight: 900;
+}
+#choices {
+    align-content: center;
 }
 #endgame {
     display: none;
