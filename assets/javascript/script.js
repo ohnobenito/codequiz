@@ -1,5 +1,4 @@
 // FOR QUESTION ARRAY
-
 let currentQuestionIndex = 0;
 
 //TIMER INFO
@@ -9,19 +8,32 @@ let timerId;
 
 //VARIABLES TO REF HTML
 let choicesEl = document.getElementById("choices");
-let questEl = document.getElementById("questions");
-let startButton = document.getElementById("start");
-let quizEl = document.getElementById("quizstart");
-let titleEl = document.getElementById("question-title");
 let endGame = document.getElementById("endgame");
-let submitHS = document.getElementById("submit");
-let initialsInput = document.querySelector("#initials");
 let initialsEl = document.getElementById("user-initials");
-let scoreEl = document.getElementById("score")
+let initialsInput = document.querySelector("#initials");
+let questEl = document.getElementById("questions");
+let quizEl = document.getElementById("quizstart");
+let scoreEl = document.getElementById("score");
+let startButton = document.getElementById("start");
+let submitHS = document.getElementById("submit");
+let titleEl = document.getElementById("question-title");
+
 
 //EVENT LISTENERS
 startButton.addEventListener('click', startQuiz); 
 submitHS.addEventListener('click', highScore);
+
+// RUNS CLOCK TIMER
+  function clockTick() {
+      time--;
+      timerEl.textContent = time;
+
+      //IF CLOCK HITS 0 AUTOMATICALLY END GAME
+      if (time === 0) {
+          clearInterval(timerId);
+          quizEnd()
+      }
+  };
 
 //WHEN START BUTTON IS CLICKED START QUIZ FUNCTION STARTS:
 
@@ -65,6 +77,7 @@ submitHS.addEventListener('click', highScore);
 
             //WHEN AN ANSWER IS SELECTED STARTS THIS FUNCTION
             choiceNode.onclick = questionClick;
+
             //APPENDS CHOICE BUTTONS TO CHOICE SECTION ON HTML
             choicesEl.appendChild(choiceNode);   
         });
@@ -111,18 +124,6 @@ submitHS.addEventListener('click', highScore);
         finalS.textContent = time;
     };
 
-    // RUNS CLOCK TIMER
-    function clockTick() {
-        time--;
-        timerEl.textContent = time;
-
-        //IF CLOCK HITS 0 AUTOMATICALLY END GAME
-        if (time === 0) {
-            clearInterval(timerId);
-            quizEnd()
-        }
-    };
-
     // USE LOCAL STORAGE TO STORE HIGH SCORE 
     //REF ACTIVITY ON LOCAL STORAGE FOR REFRESHER
     function highScore() {
@@ -134,4 +135,4 @@ submitHS.addEventListener('click', highScore);
 
       let lastPlayer = JSON.parse(localStorage.getItem("input"));
       scoreEl.textContent = lastPlayer;
-    }
+    };
