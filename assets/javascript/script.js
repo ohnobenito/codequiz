@@ -1,4 +1,3 @@
-
 // FOR QUESTION ARRAY
 
 let currentQuestionIndex = 0;
@@ -15,7 +14,6 @@ let startButton = document.getElementById("start");
 let quizEl = document.getElementById("quizstart");
 let titleEl = document.getElementById("question-title");
 let endGame = document.getElementById("endgame");
-let finalS = document.getElementById("final-score");
 let submitHS = document.getElementById("submit");
 let initialsInput = document.querySelector("#initials");
 let initialsEl = document.getElementById("user-initials");
@@ -137,4 +135,3 @@ submitHS.addEventListener('click', highScore);
       let lastPlayer = JSON.parse(localStorage.getItem("input"));
       scoreEl.textContent = lastPlayer;
     }
-    
